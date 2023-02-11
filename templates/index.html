@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Soil pH Prediction</title>
+    <link rel="stylesheet" href="static/index.css">
+  </head>
+  <body>
+    <h1>Soil pH Prediction</h1>
+    <p>Enter your location to get the soil pH prediction:</p>
+    <button id="getLocationBtn">Use Current Location</button>
+    <br>
+    <form method="post" action="/predict">
+      Latitude: <input type="text" id="latitude" name="latitude"><br>
+      Longitude: <input type="text" id="longitude" name="longitude"><br>
+      <button type="submit">Submit</button>
+    </form>
+    <br>
+    <div id="soilPhResult">
+        {% with message = get_flashed_messages() %}
+        {% if message %}
+            <p>{{ message[0] }}</p>
+        {% endif %}
+        {% endwith %}
+    </div>
+    <script src="static/index.js"></script>
+  </body>
+</html>
