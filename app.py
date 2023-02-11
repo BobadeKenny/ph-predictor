@@ -6,6 +6,8 @@ import uuid
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = uuid.uuid4().hex
+app.config['SESSION_TYPE'] = 'filesystem' 
+app.config['SESSION_PERMANENT'] = False
 app.secret_key = uuid.uuid4().hex
 anf = pickle.load(open('model/anfis.pkl', 'rb'))
 
