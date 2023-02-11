@@ -5,7 +5,7 @@ import numpy as np
 import os
 
 app = Flask(__name__)
-app.secret_key = os.getenv('secret_key')
+app.secret_key = os.environ.get('secret_key')
 anf = pickle.load(open('model/anfis.pkl', 'rb'))
 
 @app.route('/')
@@ -28,5 +28,5 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.secret_key = os.getenv('secret_key')
+    app.secret_key = os.environ.get('secret_key')
     app.run(debug=False, port=5000)
