@@ -2,13 +2,10 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import requests
 import pickle
 import numpy as np
-import uuid
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = uuid.uuid4().hex
-app.config['SESSION_TYPE'] = 'filesystem' 
-app.config['SESSION_PERMANENT'] = False
-app.secret_key = uuid.uuid4().hex
+app.secret_key = os.getenv('secret_key')
 anf = pickle.load(open('model/anfis.pkl', 'rb'))
 
 @app.route('/')
@@ -31,5 +28,5 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.secret_key = uuid.uuid4().hex
+    app.secret_key = os.getenv('secret_key')
     app.run(debug=False, port=5000)
