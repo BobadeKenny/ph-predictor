@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import requests
 import pickle
 import numpy as np
+import uuid
 
 app = Flask(__name__)
 anf = pickle.load(open('model/anfis.pkl', 'rb'))
@@ -24,3 +25,7 @@ def predict():
     flash('The predicted soil pH value is %2.2f'% pred[0][0])
     return redirect(url_for('index'))
 
+
+if __name__ == '__main__':
+    app.secret_key = uuid.uuid4().hex
+    app.run(debug=True, port=5000)
